@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sequência de Fibonacci</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 2px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sequência de Fibonacci</h1>
+
+  <input type="number" id="nTermos" placeholder="Digite o número de termos" />
+  <button onclick="gerarFibonacci()">Gerar Fibonacci</button>
+
+  <div id="resultado">
+    <h3>Termos da sequência:</h3>
+    <ul id="listaFibonacci"></ul>
+  </div>
+
+  <script>
+    function gerarFibonacci() {
+      const n = parseInt(document.getElementById("nTermos").value);
+      const lista = document.getElementById("listaFibonacci");
+      lista.innerHTML = ""; // Limpa a lista anterior
+
+      if (isNaN(n) || n <= 0) {
+        alert("Por favor, digite um número válido maior que 0.");
+        return;
+      }
+
+      let fibonacci = [0, 1]; // Os dois primeiros termos da sequência
+
+      for (let i = 2; i < n; i++) {
+        fibonacci.push(fibonacci[i - 1] + fibonacci[i - 2]); // Gera o próximo termo
+      }
+
+      // Exibe os termos na tela
+      fibonacci.slice(0, n).forEach(num => {
+        const item = document.createElement("li");
+        item.textContent = num;
+        lista.appendChild(item);
+      });
+    }
+  </script>
+
+</body>
+</html>
